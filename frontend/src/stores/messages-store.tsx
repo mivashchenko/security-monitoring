@@ -8,6 +8,7 @@ export type Message = {
   severity: string;
   timestamp: string;
   user: string;
+  violationType: string;
 }
 
 export type MessageState = {

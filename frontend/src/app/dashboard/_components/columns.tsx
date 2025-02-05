@@ -77,6 +77,12 @@ export const columns: ColumnDef<Message>[] = [
       ),
     },
     {
+      accessorKey: 'violationType',
+      header: ({column}) => (
+        <DashboardMessagesColumnHead column={column} title="Violation Type (GPT)"/>
+      ),
+    },
+    {
       header: ({column}) => (
         <DashboardMessagesColumnHead column={column} title="Messages"/>
       ),

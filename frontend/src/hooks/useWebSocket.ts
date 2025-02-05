@@ -17,6 +17,7 @@ export const useWebSocket = () => {
       socket = io(SOCKET_URL);
 
       socket.on("newMessage", (message) => {
+        console.log("New message received", message);
         const flagged = analyzeMessage(message.content);
         const newMessage = { ...message, flagged };
 
