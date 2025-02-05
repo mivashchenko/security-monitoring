@@ -2,10 +2,11 @@ import {TableCell, TableRow} from "@/components/ui/table";
 import {Badge} from "@/components/ui/badge";
 import Link from "next/link";
 import {Message} from "@/stores/messages-store";
+import {CSSProperties} from "react";
 
 interface DashboardRecentMessagesProps {
   message: Message;
-  style: any;
+  style: CSSProperties;
 }
 
 export const DashboardMessagesRow = ({message, style}: DashboardRecentMessagesProps) => {

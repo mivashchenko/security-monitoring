@@ -20,7 +20,7 @@ interface DataTableColumnHeaderProps<TData, TValue>
   title: string
 }
 
-export function DataTableColumnHeader<TData, TValue>({
+export function DashboardMessagesColumnHead<TData, TValue>({
   column,
   title,
   className,

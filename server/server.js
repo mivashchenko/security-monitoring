@@ -15,5 +15,5 @@ io.on("connection", (socket) => {
       timestamp: new Date().toISOString()
     };
     socket.emit("newMessage", randomMessage);
-  }, 3000);
+  }, 1000);
 });

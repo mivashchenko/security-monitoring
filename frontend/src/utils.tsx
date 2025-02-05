@@ -1,7 +1,8 @@
 export const timeAgo = (date: number | Date) => {
+  const dateObj = typeof date === "number" ? new Date(date) : date;
   const now = new Date();
-  // @ts-ignore
-  const seconds = Math.floor((now - date) / 1000);
+
+  const seconds = Math.floor((now.getTime() - dateObj.getTime()) / 1000);
 
   if (seconds < 5) return "Just now";
   if (seconds < 30) return "A few seconds ago";
@@ -29,4 +30,16 @@ export const timeAgo = (date: number | Date) => {
 
   const years = Math.floor(days / 365);
   return years < 2 ? "Last year" : `${years} years ago`;
+}
+
+export const toHumanReadableDate = (date: Date) => {
+  return date.toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
 }

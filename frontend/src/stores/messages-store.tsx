@@ -27,7 +27,7 @@ export const defaultInitState: MessageState = {
 export const createMessagesStore = (
   initState: MessageState = defaultInitState,
 ) => createStore<MessageState>((set) => ({
-  messages: [],
+  ...initState,
   addMessage: (message) => set((state) => ({messages: [message, ...state.messages]})),
   fetch: async () => {
     const response = await fetch('http://localhost:4001/messages?_sort=timestamp&_order=desc&_limit=100')

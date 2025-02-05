@@ -27,7 +27,7 @@ services:
 
   json-server:
     image: clue/json-server
-    platform: linux/amd64  # Force the correct platform
+    platform: linux/amd64
     volumes:
       - ./server/messages.json:/data/db.json
     ports:

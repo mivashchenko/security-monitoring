@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import { FaBookReader, FaCalendar } from 'react-icons/fa'
 import {
   Tooltip,
   TooltipContent,

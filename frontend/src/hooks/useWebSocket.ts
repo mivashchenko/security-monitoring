@@ -1,41 +1,38 @@
 import {useEffect, useRef} from "react";
-import { io } from "socket.io-client";
+import {io, Socket} from "socket.io-client";
 import { analyzeMessage } from "@/lib/profanityFilter";
 import {useMessagesStore} from "@/providers/messages-store-provider";
 import {Message} from "@/stores/messages-store";
 
 const SOCKET_URL = "ws://localhost:4000";
+let socket: Socket | null = null;
+
 
 export const useWebSocket = () => {
   const addMessage = useMessagesStore((state) => state.addMessage);
-  const messages = useMessagesStore((state) => state.messages);
-  const messagesRef = useRef<Message[]>([]); // Ref to store the latest messages
-
-  // Keep ref updated whenever store updates
-  useEffect(() => {
-    messagesRef.current = messages;
-  }, [addMessage]);
+  const messagesRef = useRef<Message[]>([]);
 
   useEffect(() => {
-    const socket = io(SOCKET_URL);
+    if (!socket) {
+      socket = io(SOCKET_URL);
 
-    socket.on("newMessage", (message) => {
+      socket.on("newMessage", (message) => {
+        const flagged = analyzeMessage(message.content);
+        const newMessage = { ...message, flagged };
 
-      const flagged = analyzeMessage(message.content);
-      const newMessage = { ...message, flagged };
+        addMessage(newMessage);
+        messagesRef.current = [...messagesRef.current, newMessage];
+      });
 
-      // Use the latest messages from messagesRef
-      const updatedMessages = [...messagesRef.current, newMessage];
-
-      // Update the store
-      addMessage(newMessage);
-
-      // Update the ref to prevent stale state
-      messagesRef.current = updatedMessages;
-    });
+      console.log("WebSocket connection established");
+    }
 
     return () => {
-      socket.disconnect();
+      if (socket) {
+        socket.disconnect();
+        socket = null;
+        console.log("WebSocket connection closed");
+      }
     };
-  }, []);
+  }, [addMessage]);
 };

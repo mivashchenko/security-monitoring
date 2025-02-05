@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import {TrendingUp} from "lucide-react"
 import {Label, Pie, PieChart} from "recharts"
 
@@ -18,10 +17,10 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import {useMemo} from "react";
 
 
-
-const chartConfig = {
+const chartConfig: ChartConfig = {
   messages: {
     label: "Messages",
   },
@@ -45,7 +44,7 @@ const chartConfig = {
     label: "Critical",
     color: "hsl(var(--chart-5))",
   },
-} satisfies ChartConfig
+}
 
 interface DashboardSeverityChartProps {
   data: {
@@ -68,17 +67,17 @@ export function DashboardSeverityChart({
                                        }: DashboardSeverityChartProps) {
 
 
-  const chartData = [
-  {level: "no issue", messages: noIssueMessages, fill: "rgb(220 252 231 / var(--tw-bg-opacity, 1))"},
-  {level: "low", messages: lowSeverityIssues, fill: "rgb(254 252 232 / var(--tw-bg-opacity, 1))"},
-  {level: "medium", messages: mediumSeverityIssues, fill: "rgb(254 249 195 / var(--tw-bg-opacity, 1))"},
-  {level: "high", messages: highSeverityIssues, fill: "rgb(255 237 213 / var(--tw-bg-opacity, 1))"},
-  {level: "critical", messages: criticalSeverityIssues, fill: "rgb(254 226 226 / var(--tw-bg-opacity, 1))"},
-]
+const chartData = useMemo(() => [
+  { level: "no issue", messages: noIssueMessages, fill: "rgb(220 252 231 / var(--tw-bg-opacity, 1))" },
+  { level: "low", messages: lowSeverityIssues, fill: "rgb(254 252 232 / var(--tw-bg-opacity, 1))" },
+  { level: "medium", messages: mediumSeverityIssues, fill: "rgb(254 249 195 / var(--tw-bg-opacity, 1))" },
+  { level: "high", messages: highSeverityIssues, fill: "rgb(255 237 213 / var(--tw-bg-opacity, 1))" },
+  { level: "critical", messages: criticalSeverityIssues, fill: "rgb(254 226 226 / var(--tw-bg-opacity, 1))" },
+], [noIssueMessages, lowSeverityIssues, mediumSeverityIssues, highSeverityIssues, criticalSeverityIssues]);
 
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.messages, 0)
-  }, [chartData])
+const totalVisitors = useMemo(() => {
+  return chartData.reduce((acc, curr) => acc + (curr.messages || 0), 0);
+}, [chartData]);
 
   return (
     <Card className="flex flex-col">
