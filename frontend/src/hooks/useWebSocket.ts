@@ -1,10 +1,9 @@
 import {useEffect, useRef} from "react";
 import {io, Socket} from "socket.io-client";
-import { analyzeMessage } from "@/lib/profanityFilter";
 import {useMessagesStore} from "@/providers/messages-store-provider";
 import {Message} from "@/stores/messages-store";
 
-const SOCKET_URL = "ws://localhost:4000";
+const SOCKET_URL = `ws://${process.env.API_URL}`;
 let socket: Socket | null = null;
 
 
@@ -18,7 +17,7 @@ export const useWebSocket = () => {
 
       socket.on("newMessage", (message) => {
         console.log("New message received", message);
-        const flagged = analyzeMessage(message.content);
+        const flagged = true;
         const newMessage = { ...message, flagged };
 
         addMessage(newMessage);

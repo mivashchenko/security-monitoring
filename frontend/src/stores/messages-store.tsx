@@ -1,4 +1,5 @@
 import { createStore } from 'zustand/vanilla'
+import {getMessages} from "@/actions/getMessages";
 
 export type Message = {
   id: number;
@@ -31,7 +32,6 @@ export const createMessagesStore = (
   ...initState,
   addMessage: (message) => set((state) => ({messages: [message, ...state.messages]})),
   fetch: async () => {
-    const response = await fetch('http://localhost:4001/messages?_sort=timestamp&_order=desc&_limit=100')
-    set({messages: await response.json()})
+    set({messages: await getMessages()});
   },
 }));

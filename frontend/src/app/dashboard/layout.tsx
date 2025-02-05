@@ -5,12 +5,10 @@ import {ReactNode} from 'react'
 import {ThemeModeToggle} from '@/components/theme-mode-toggler'
 import {Navigation} from "@/app/_components/navigation";
 import {NavigationMobile} from "@/app/_components/navigation-mobile";
-import {CounterStoreProvider} from '@/providers/counter-store-provider'
 import {MessagesStoreProvider} from "@/providers/messages-store-provider";
 
 export default function ProtectedLayout({children}: { children: ReactNode }) {
   return (
-    <CounterStoreProvider>
       <MessagesStoreProvider>
         <TooltipProvider>
           <div className='flex min-h-screen w-full flex-col bg-muted/40'>
@@ -35,6 +33,5 @@ export default function ProtectedLayout({children}: { children: ReactNode }) {
           </div>
         </TooltipProvider>
       </MessagesStoreProvider>
-    </CounterStoreProvider>
   )
 }

@@ -9,7 +9,7 @@ export default function Home() {
         className={cn('')}
       >
         Wellcome to the home page.
-        Click here to go to the <a href="/dashboard">dashboard</a>
+        Click here to go to the <a className={'text-blue-500'} href="/dashboard">dashboard</a>
       </main>
     </div>
   );
