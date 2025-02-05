@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend  # Ensure this matches your actual folder name
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app  # Live reloading support
+      - /app/node_modules  # Prevent overwriting node_modules
+    environment:
+      - NODE_ENV=development
+    command: [ "pnpm", "run", "dev" ]
+
+  backend:
+    build:
+      context: ./server  # Ensure this is correct for backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: [ "nodemon", "server.js" ]
+
+  json-server:
+    image: clue/json-server
+    platform: linux/amd64  # Force the correct platform
+    volumes:
+      - ./server/messages.json:/data/db.json
+    ports:
+      - "4001:80"
