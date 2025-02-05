@@ -3,7 +3,7 @@ import {io, Socket} from "socket.io-client";
 import {useMessagesStore} from "@/providers/messages-store-provider";
 import {Message} from "@/stores/messages-store";
 
-const SOCKET_URL = `ws://vast-retreat-05206-d317ca74ea03.herokuapp.com`;
+const SOCKET_URL = `wss://vast-retreat-05206-d317ca74ea03.herokuapp.com`;
 let socket: Socket | null = null;
 
 
