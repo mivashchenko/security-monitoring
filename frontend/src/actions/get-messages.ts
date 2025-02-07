@@ -4,12 +4,14 @@ import {Message} from "@/stores/messages-store";
 
 export const getMessages = async (): Promise<{ error: Error | null; data: Message[]; }> => {
   try {
-    // const response = await fetch(
-    //   `https://vast-retreat-05206-d317ca74ea03.herokuapp.com/api/json/messages?_sort=timestamp&_order=desc&_limit=100`
-    // );
+
+    // TODO: put this in a config file
     const response = await fetch(
-      `http://localhost:4000/api/json/messages?_sort=timestamp&_order=desc&_limit=100`
+      `https://vast-retreat-05206-d317ca74ea03.herokuapp.com/api/json/messages?_sort=timestamp&_order=desc&_limit=100`
     );
+    // const response = await fetch(
+    //   `http://localhost:4000/api/json/messages?_sort=timestamp&_order=desc&_limit=100`
+    // );
 
 
     if (!response.ok) {
