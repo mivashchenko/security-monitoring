@@ -25,6 +25,7 @@ import {DashboardTablePagination} from "@/app/dashboard/_components/table/pagina
 import {DashboardTableToolbar} from "@/app/dashboard/_components/table/toolbar";
 import {dashboardTableColumns} from "@/app/dashboard/_components/table/columns";
 import {useToast} from "@/hooks/use-toast";
+import {Message} from "@/stores/messages-store";
 
 export const DashboardTable = () => {
   const [sorting, setSorting] = useState<SortingState>([])
@@ -74,7 +75,7 @@ export const DashboardTable = () => {
         })
       }
     }
-    , [messagesError])
+    , [messagesError, toast])
 
   useEffect(() => {
     fetchMessages()
@@ -82,7 +83,7 @@ export const DashboardTable = () => {
 
 
   const renderHeader = () => {
-    const cellRenderer = (header: Header<any, unknown>) => {
+    const cellRenderer = (header: Header<Message, unknown>) => {
       const content = flexRender(
         header.column.columnDef.header,
         header.getContext()
@@ -95,12 +96,11 @@ export const DashboardTable = () => {
       )
     }
 
-    const rowRenderer = (headerGroup: { id: string; headers: Header<any, unknown>[] }) => {
-      const content = headerGroup.headers.map(cellRenderer);
+    const rowRenderer = (headerGroup: { id: string; headers: Header<Message, unknown>[] }) => {
 
       return (
         <TableRow key={headerGroup.id}>
-          {content}
+          {headerGroup.headers.map(cellRenderer)}
         </TableRow>
       )
     }
@@ -126,7 +126,7 @@ export const DashboardTable = () => {
       </TableRow>
     )
 
-    const cellRenderer = (cell: Cell<any, unknown>) => {
+    const cellRenderer = (cell: Cell<Message, unknown>) => {
       const content = flexRender(
         cell.column.columnDef.cell,
         cell.getContext()
@@ -139,7 +139,7 @@ export const DashboardTable = () => {
       )
     }
 
-    const rowRenderer = (row: Row<any>) => {
+    const rowRenderer = (row: Row<Message>) => {
       const dataState = row.getIsSelected() && "selected"
       const content = row.getVisibleCells().map(cellRenderer)
 

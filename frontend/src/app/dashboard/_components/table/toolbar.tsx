@@ -21,7 +21,7 @@ export function DashboardTableToolbar<TData>({
 
   const renderInput = () => {
     const value = (table.getColumn("email")?.getFilterValue() as string) ?? ""
-    const handleChange = (event: { target: { value: any; }; }) =>
+    const handleChange = (event: { target: { value: string; }; }) =>
       table.getColumn("email")?.setFilterValue(event.target.value)
 
     return <Input
