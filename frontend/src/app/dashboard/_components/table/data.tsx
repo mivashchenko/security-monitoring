@@ -9,21 +9,6 @@ import {
   Timer,
 } from "lucide-react"
 
-export const labels = [
-  {
-    value: "bug",
-    label: "Bug",
-  },
-  {
-    value: "feature",
-    label: "Feature",
-  },
-  {
-    value: "documentation",
-    label: "Documentation",
-  },
-]
-
 export const severities = [
   {
     value: "no issue",
@@ -55,12 +40,12 @@ export const severities = [
 export const statuses = [
   {
     label: "Ok",
-    value: "ok",
+    value: 0,
     icon: ArrowDown,
   },
   {
-    label: "Alert",
-    value: "alert",
+    label: "Flagged",
+    value: 1,
     icon: ArrowRight,
   },
 ]

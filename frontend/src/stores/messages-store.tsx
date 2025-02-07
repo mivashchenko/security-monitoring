@@ -1,5 +1,5 @@
 import {createStore} from 'zustand/vanilla'
-import {getMessages} from "@/actions/getMessages";
+import {getMessages} from "@/actions/get-messages";
 
 export type Message = {
   id: number;

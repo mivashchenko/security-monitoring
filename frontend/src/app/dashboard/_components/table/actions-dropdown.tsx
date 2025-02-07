@@ -7,16 +7,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {Button} from "@/components/ui/button";
 import {MoreHorizontal} from "lucide-react";
-import * as React from "react";
 import {Message} from "@/stores/messages-store";
 
-interface DashboardMessagesActionsDropdownProps {
+interface DashboardTableActionsDropdownProps {
   message: Message;
 }
 
-export const DashboardMessagesActionsDropdown = ({
+export const DashboardTableActionsDropdown = ({
                                                    message
-                                                 }: DashboardMessagesActionsDropdownProps) => {
+                                                 }: DashboardTableActionsDropdownProps) => {
   return <DropdownMenu>
     <DropdownMenuTrigger asChild>
       <Button variant="ghost" className="h-[20px] w-8 p-0">

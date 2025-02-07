@@ -7,9 +7,9 @@ import {useMessagesStore} from "@/providers/messages-store-provider";
 import {Card, CardContent} from "@/components/ui/card";
 import {lazy} from "react";
 
-const DashboardSeverityChart = lazy(() => import("@/app/dashboard/_components/charts/dashboard-chart-severity"))
-const DashboardAreaChart = lazy(() => import("@/app/dashboard/_components/charts/dashboard-chart-area"))
-const DashboardMessages = lazy(() => import("@/app/dashboard/_components/table/dashboard-table"))
+const DashboardSeverityChart = lazy(() => import("@/app/dashboard/_components/chart/severity"))
+const DashboardAreaChart = lazy(() => import("@/app/dashboard/_components/chart/trend"))
+const DashboardMessages = lazy(() => import("@/app/dashboard/_components/table/table"))
 
 export function Dashboard() {
   const messages = useMessagesStore((state) => state.messages.data);
