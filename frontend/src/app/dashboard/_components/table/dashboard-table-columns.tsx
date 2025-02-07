@@ -3,12 +3,12 @@ import {Message} from "@/stores/messages-store";
 import {Checkbox} from "@/components/ui/checkbox";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
-import {DashboardMessagesColumnHead} from "@/app/dashboard/_components/dashboard-messages-column-head";
+import {DashboardTableColumnHead} from "@/app/dashboard/_components/table/dashboard-table-column-head";
 import {SeverityBadge, SeverityLevel} from "@/components/ui/severity-badge";
 import {timeAgo, toHumanReadableDate} from "@/utils";
-import {DashboardMessagesActionsDropdown} from "@/app/dashboard/_components/dashbard-messages-actions-dropdown";
+import {DashboardMessagesActionsDropdown} from "@/app/dashboard/_components/table/dashboard-table-actions-dropdown";
 
-export const columns: ColumnDef<Message>[] = [
+export const dashboardTableColumns: ColumnDef<Message>[] = [
     {
       id: "select",
       header: ({table}) => (
@@ -53,7 +53,7 @@ export const columns: ColumnDef<Message>[] = [
     },
     {
       header: ({column}) => (
-        <DashboardMessagesColumnHead column={column} title="Status"/>
+        <DashboardTableColumnHead column={column} title="Status"/>
       ),
       accessorKey: 'flagged',
       cell: (info) => {
@@ -67,24 +67,24 @@ export const columns: ColumnDef<Message>[] = [
         return <span className='truncate'>{info.getValue<string>()}</span>
       },
       header: ({column}) => (
-        <DashboardMessagesColumnHead column={column} title="User"/>
+        <DashboardTableColumnHead column={column} title="User"/>
       )
     },
     {
       accessorKey: 'email',
       header: ({column}) => (
-        <DashboardMessagesColumnHead column={column} title="Email"/>
+        <DashboardTableColumnHead column={column} title="Email"/>
       ),
     },
     {
       accessorKey: 'violationType',
       header: ({column}) => (
-        <DashboardMessagesColumnHead column={column} title="Violation Type (GPT)"/>
+        <DashboardTableColumnHead column={column} title="Violation Type (GPT)"/>
       ),
     },
     {
       header: ({column}) => (
-        <DashboardMessagesColumnHead column={column} title="Messages"/>
+        <DashboardTableColumnHead column={column} title="Messages"/>
       ),
       accessorKey: 'content',
       cell: info => {
@@ -93,7 +93,7 @@ export const columns: ColumnDef<Message>[] = [
     },
     {
       header: ({column}) => (
-        <DashboardMessagesColumnHead column={column} title="Severity"/>
+        <DashboardTableColumnHead column={column} title="Severity"/>
       ),
       accessorKey: 'severity',
       cell: (info) => {
@@ -106,15 +106,15 @@ export const columns: ColumnDef<Message>[] = [
     },
     {
       header: ({column}) => (
-        <DashboardMessagesColumnHead column={column} title="Timestamp"/>
+        <DashboardTableColumnHead column={column} title="Timestamp"/>
       ),
       accessorKey: 'timestamp',
       cell: (info) => {
         const date = new Date(info.getValue() as string);
 
         return <div className={'flex flex-col'}>
-          <span className={'text-black'}>{timeAgo(date)}</span>
-          <span className={'text-xs text-gray-500'}>{toHumanReadableDate(date)}</span>
+          <span className={'text-black text-nowrap'}>{timeAgo(date)}</span>
+          <span className={'text-xs text-gray-500 text-nowrap'}>{toHumanReadableDate(date)}</span>
         </div>;
       }
     },

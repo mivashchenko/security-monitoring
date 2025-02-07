@@ -18,6 +18,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import {useMemo} from "react";
+import {useMessagesStore} from "@/providers/messages-store-provider";
 
 
 const chartConfig: ChartConfig = {
@@ -46,38 +47,27 @@ const chartConfig: ChartConfig = {
   },
 }
 
-interface DashboardSeverityChartProps {
-  data: {
-    noIssueMessages: number
-    lowSeverityIssues: number
-    mediumSeverityIssues: number
-    highSeverityIssues: number
-    criticalSeverityIssues: number
-  }
-}
+export function DashboardChartSeverity() {
+  const messages = useMessagesStore((state) => state.messages.data);
 
-export function DashboardSeverityChart({
-                                         data: {
-                                           noIssueMessages,
-                                           lowSeverityIssues,
-                                           mediumSeverityIssues,
-                                           highSeverityIssues,
-                                           criticalSeverityIssues,
-                                         }
-                                       }: DashboardSeverityChartProps) {
+  const noIssueMessages = messages.filter((message) => message.severity === "no issue").length;
+  const lowSeverityIssues = messages.filter((message) => message.severity === "low").length;
+  const mediumSeverityIssues = messages.filter((message) => message.severity === "medium").length;
+  const highSeverityIssues = messages.filter((message) => message.severity === "high").length;
+  const criticalSeverityIssues = messages.filter((message) => message.severity === "critical").length;
 
 
-const chartData = useMemo(() => [
-  { level: "no issue", messages: noIssueMessages, fill: "rgb(220 252 231 / var(--tw-bg-opacity, 1))" },
-  { level: "low", messages: lowSeverityIssues, fill: "rgb(254 252 232 / var(--tw-bg-opacity, 1))" },
-  { level: "medium", messages: mediumSeverityIssues, fill: "rgb(254 249 195 / var(--tw-bg-opacity, 1))" },
-  { level: "high", messages: highSeverityIssues, fill: "rgb(255 237 213 / var(--tw-bg-opacity, 1))" },
-  { level: "critical", messages: criticalSeverityIssues, fill: "rgb(254 226 226 / var(--tw-bg-opacity, 1))" },
-], [noIssueMessages, lowSeverityIssues, mediumSeverityIssues, highSeverityIssues, criticalSeverityIssues]);
+  const chartData = useMemo(() => [
+    {level: "no issue", messages: noIssueMessages, fill: "rgb(220 252 231 / var(--tw-bg-opacity, 1))"},
+    {level: "low", messages: lowSeverityIssues, fill: "rgb(254 252 232 / var(--tw-bg-opacity, 1))"},
+    {level: "medium", messages: mediumSeverityIssues, fill: "rgb(254 249 195 / var(--tw-bg-opacity, 1))"},
+    {level: "high", messages: highSeverityIssues, fill: "rgb(255 237 213 / var(--tw-bg-opacity, 1))"},
+    {level: "critical", messages: criticalSeverityIssues, fill: "rgb(254 226 226 / var(--tw-bg-opacity, 1))"},
+  ], [noIssueMessages, lowSeverityIssues, mediumSeverityIssues, highSeverityIssues, criticalSeverityIssues]);
 
-const totalVisitors = useMemo(() => {
-  return chartData.reduce((acc, curr) => acc + (curr.messages || 0), 0);
-}, [chartData]);
+  const totalVisitors = useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + (curr.messages || 0), 0);
+  }, [chartData]);
 
   return (
     <Card className="flex flex-col">
@@ -146,3 +136,5 @@ const totalVisitors = useMemo(() => {
     </Card>
   )
 }
+
+export default DashboardChartSeverity

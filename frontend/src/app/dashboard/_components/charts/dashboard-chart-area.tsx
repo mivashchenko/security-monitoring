@@ -133,7 +133,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export const  DashboardAreaChart = ()=>  {
+export const  DashboardChartArea = ()=>  {
   const [timeRange, setTimeRange] = React.useState("90d")
 
   const filteredData = chartData.filter((item) => {
@@ -154,7 +154,7 @@ export const  DashboardAreaChart = ()=>  {
     <Card>
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
-          <CardTitle>Severity levels</CardTitle>
+          <CardTitle>Severity level trend</CardTitle>
           <CardDescription>
             Showing total messages for the last 3 months
           </CardDescription>
@@ -261,3 +261,5 @@ export const  DashboardAreaChart = ()=>  {
     </Card>
   )
 }
+
+export default DashboardChartArea

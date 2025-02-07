@@ -18,14 +18,16 @@ import {
   VisibilityState
 } from "@tanstack/react-table";
 import {useWebSocket} from "@/hooks/useWebSocket";
-import {DataTablePagination} from "@/components/data-table-pagination";
-import {DataTableToolbar} from "@/app/dashboard/_components/dashboard-messages-toolbar";
-import {columns} from "@/app/dashboard/_components/columns";
+import {DashboardTablePagination} from "@/app/dashboard/_components/table/dashboard-table-pagination";
+import {DataTableToolbar} from "@/app/dashboard/_components/table/dashboard-table-toolbar";
+import {dashboardTableColumns} from "@/app/dashboard/_components/table/dashboard-table-columns";
+import {useToast} from "@/hooks/use-toast";
 
-export const DashboardMessages = () => {
+export const DashboardTable = () => {
   useWebSocket()
 
-  const messages = useMessagesStore((state) => state.messages);
+  const messages = useMessagesStore((state) => state.messages.data);
+  const messagesError = useMessagesStore((state) => state.messages.error);
   const fetchMessages = useMessagesStore((state) => state.fetch);
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -33,9 +35,11 @@ export const DashboardMessages = () => {
     useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
 
+  const {toast} = useToast()
+
   const table = useReactTable({
     data: messages,
-    columns,
+    columns: dashboardTableColumns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -56,6 +60,17 @@ export const DashboardMessages = () => {
     },
   })
 
+
+  useEffect(() => {
+      if (messagesError) {
+        toast({
+          variant: "destructive",
+          title: "Fetch messages failed",
+          description: messagesError.message,
+        })
+      }
+    }
+    , [messagesError])
 
   useEffect(() => {
     fetchMessages()
@@ -103,7 +118,7 @@ export const DashboardMessages = () => {
           ) : (
             <TableRow>
               <TableCell
-                colSpan={columns.length}
+                colSpan={dashboardTableColumns.length}
                 className="h-24 text-center"
               >
                 No results.
@@ -113,6 +128,8 @@ export const DashboardMessages = () => {
         </TableBody>
       </Table>
     </div>
-    <DataTablePagination table={table}/>
+    <DashboardTablePagination table={table}/>
   </div>
 }
+
+export default DashboardTable

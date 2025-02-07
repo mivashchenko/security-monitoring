@@ -3,9 +3,9 @@
 import { Table } from "@tanstack/react-table"
 import { X } from "lucide-react"
 
-import {DataTableViewOptions} from "@/components/data-table-view-options";
-import {DataTableFacetedFilter} from "@/app/dashboard/_components/dashboard-messages-filter";
-import {priorities, severities} from "@/app/dashboard/data";
+import {DashboardTableViewOptions} from "@/app/dashboard/_components/table/dashboard-table-view-options";
+import {DataTableFacetedFilter} from "@/app/dashboard/_components/table/dashboard-table-filter";
+import {statuses, severities} from "@/app/dashboard/data";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 
@@ -36,11 +36,11 @@ export function DataTableToolbar<TData>({
             options={severities}
           />
         )}
-        {table.getColumn("content") && (
+        {table.getColumn("flagged") && (
           <DataTableFacetedFilter
-            column={table.getColumn("content")}
-            title="Content"
-            options={priorities}
+            column={table.getColumn("flagged")}
+            title="Status"
+            options={statuses}
           />
         )}
         {isFiltered && (
@@ -54,7 +54,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <DashboardTableViewOptions table={table} />
     </div>
   )
 }

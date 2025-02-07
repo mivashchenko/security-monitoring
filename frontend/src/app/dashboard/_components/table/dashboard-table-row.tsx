@@ -9,7 +9,7 @@ interface DashboardRecentMessagesProps {
   style: CSSProperties;
 }
 
-export const DashboardMessagesRow = ({message, style}: DashboardRecentMessagesProps) => {
+export const DashboardTableRow = ({message, style}: DashboardRecentMessagesProps) => {
   const date = new Date(message.timestamp);
 
   const humanReadable = date.toLocaleString("en-US", {

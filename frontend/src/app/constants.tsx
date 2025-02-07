@@ -1,29 +1,23 @@
 import {
-  LuCalendar,
-  LuCoffee,
   LuLayoutDashboard,
-  LuUsers,
 } from 'react-icons/lu'
+import {IoChatbubblesOutline} from "react-icons/io5";
+import {TbApps} from "react-icons/tb";
 
 export const navigationItems = [
   {
     title: 'Dashboard',
     icon: <LuLayoutDashboard className='h-5 w-5' />,
-    href: '/admin',
+    href: '/dashboard',
   },
   {
-    title: 'Calendar',
-    icon: <LuCalendar className='h-5 w-5' />,
-    href: '/admin/calendar',
+    title: 'Chats',
+    icon: <IoChatbubblesOutline className='h-5 w-5' />,
+    href: '/admin/chats',
   },
   {
-    title: 'Services',
-    icon: <LuCoffee className='h-5 w-5' />,
-    href: '/admin/services',
-  },
-  {
-    title: 'Employees',
-    icon: <LuUsers className='h-5 w-5' />,
-    href: '/admin/employees',
+    title: 'Connections',
+    icon: <TbApps className='h-5 w-5' />,
+    href: '/admin/connections',
   },
 ]

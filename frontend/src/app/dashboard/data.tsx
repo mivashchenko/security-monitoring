@@ -2,7 +2,6 @@
 import {
   ArrowDown,
   ArrowRight,
-  ArrowUp,
   CheckCircle,
   Circle,
   CircleOff,
@@ -53,20 +52,15 @@ export const severities = [
   },
 ]
 
-export const priorities = [
+export const statuses = [
   {
-    label: "Low",
-    value: "low",
+    label: "Ok",
+    value: "ok",
     icon: ArrowDown,
   },
   {
-    label: "Medium",
-    value: "medium",
+    label: "Alert",
+    value: "alert",
     icon: ArrowRight,
-  },
-  {
-    label: "High",
-    value: "high",
-    icon: ArrowUp,
   },
 ]

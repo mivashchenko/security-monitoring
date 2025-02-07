@@ -3,9 +3,10 @@ import {
 } from '@/components/ui/tooltip'
 import {ReactNode} from 'react'
 import {ThemeModeToggle} from '@/components/theme-mode-toggler'
-import {Navigation} from "@/app/_components/navigation";
-import {NavigationMobile} from "@/app/_components/navigation-mobile";
+import {Navigation} from "@/components/navigation";
+import {NavigationMobile} from "@/components/navigation-mobile";
 import {MessagesStoreProvider} from "@/providers/messages-store-provider";
+import {Toaster} from "@/components/ui/toaster";
 
 export default function ProtectedLayout({children}: { children: ReactNode }) {
   return (
@@ -29,6 +30,7 @@ export default function ProtectedLayout({children}: { children: ReactNode }) {
               <main className='flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8'>
                 {children}
               </main>
+              <Toaster />
             </div>
           </div>
         </TooltipProvider>
