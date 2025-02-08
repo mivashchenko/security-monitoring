@@ -20,20 +20,19 @@ Visit this [link](https://security-monitoring-orpin.vercel.app/dashboard) to see
 
 ## Installation and Setup Instructions
 
-[link](https://github.com/mivashchenko/express-openai-app/tree/security-dashboard) - setup the backend
+[Backend](https://github.com/mivashchenko/express-openai-app/tree/security-dashboard) - setup the backend
 
-Installation:
+Once the backend server is running please follow the instructions below:
+
+`git clone https://github.com/mivashchenko/security-monitoring.git`
 
 `pnpm install`
 
-To Start Server:
-
 `pnpm run start`  
 
-To Visit App:
+Once the server is running, visit:
 
 `localhost:3000/dashboard`
-
 
 # Project details
 
@@ -50,14 +49,16 @@ Two summary cards provide key insights:
 ## Messages table
 
 ### Toolbar
-- search through messages
-- filters
-- columns visibility
+- Search messages
+- Filter messages
+- Toggle column visibility
 
 ### Table Functionality
 - Displays all messages
 - Efficient handling of large datasets
 - Real-time updates
+
+All the messages are filtered/sorted on the client side. The messages are fetched from the server and then filtered/sorted on the client side. The messages are updated in real-time using web sockets.
 
 ## Development Challenges & Solutions
 The messages table was one of the most interesting yet challenging parts of the project. Initially, I considered using data virtualization, but I ultimately opted for pagination due to memory issues with real-time updates.
