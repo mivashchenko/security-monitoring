@@ -1,7 +1,8 @@
 ## Akhenaten security
 #### Time for changing the world
 
-Visit this [link](https://security-monitoring-orpin.vercel.app/dashboard) to see the live version of the app.
+Visit this [link](https://security-monitoring-orpin.vercel.app/dashboard) to see the live version of the app (Vercel).
+[The backend repo](https://github.com/mivashchenko/express-openai-app/tree/security-dashboard). To check the live version click here [Heroku](https://vast-retreat-05206-d317ca74ea03.herokuapp.com/).
 
 ## Screen Shots
 ### Desktop
