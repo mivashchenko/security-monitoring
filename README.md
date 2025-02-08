@@ -1,7 +1,8 @@
 ## Akhenaten security
 #### time to change
 
-Visit this [link](https://akhenaten-security.herokuapp.com/dashboard) to see the live version of the app.
+Visit this [link](https://security-monitoring-orpin.vercel.app/dashboard) to see the live version of the app.
+
 ## Project Screen Shot(s)
 ### Desktop
 ![Alt text](screenshots/desktop-dark.png)
