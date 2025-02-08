@@ -3,7 +3,7 @@
 
 Visit this [link](https://security-monitoring-orpin.vercel.app/dashboard) to see the live version of the app.
 
-## Project Screen Shot(s)
+## Screen Shots
 ### Desktop
 ![Alt text](screenshots/desktop-dark.png)
 ![Alt text](screenshots/desktop-light.png)
