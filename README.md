@@ -71,9 +71,11 @@ So I just use json-server to simulate the backend and sockets to get the new dat
 One idea to enhance user experience is to pause WebSocket updates when the user is navigating through different pages of the table or selecting a row. Instead, the table could display a “Refresh Data” button to allow users to resume real-time updates. This would require a more structured architecture and additional development time.
 
 ## Other features
-
-The project shows error messages in the snackbar, has a dark mode, and a responsive design.
+- Fully Responsive Design
+- Dark Mode
+- Snackbar Notifications for error messages
 
 ## LLM part
-I've create a openai assistant that can help with messages analyzing. It's not perfect, but it's a good start. For some reason it does make mistakes. I need to play with the functions calling more to understand how it works.
-Basically I ask GPT to analyze a message and call a function with a single parameter "violationType". the function does nothing but i use the parameter to understand what kind of violation it is.
+I’ve created an OpenAI assistant that can help analyze messages. It’s not perfect, but it’s a good start. For some reason, it sometimes makes mistakes. I need to experiment more with function calling to understand how it works.
+
+Basically, I ask GPT to analyze a message and call a function with a single parameter, “violationType”. The function itself doesn’t perform any action, but I use the parameter to determine the type of violation.
