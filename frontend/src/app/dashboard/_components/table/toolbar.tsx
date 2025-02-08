@@ -20,9 +20,9 @@ export function DashboardTableToolbar<TData>({
   const isFiltered = table.getState().columnFilters.length > 0
 
   const renderInput = () => {
-    const value = (table.getColumn("email")?.getFilterValue() as string) ?? ""
+    const value = (table.getColumn("content")?.getFilterValue() as string) ?? ""
     const handleChange = (event: { target: { value: string; }; }) =>
-      table.getColumn("email")?.setFilterValue(event.target.value)
+      table.getColumn("content")?.setFilterValue(event.target.value)
 
     return <Input
       className="h-8 w-[150px] lg:w-[250px]"
